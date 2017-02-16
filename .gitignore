@@ -1,2 +1,6 @@
 .idea/
 db.sqlite3
+*.pyc
+*.pye
+
+__pycache__/
