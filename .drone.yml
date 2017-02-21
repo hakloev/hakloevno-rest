@@ -1,0 +1,8 @@
+pipeline:
+    docker:
+        image: plugins/docker
+        repo: registry.hakloev.no/hakloevno/backend
+        registry: registry.hakloev.no
+        tags: [ latest ]
+        when:
+            branch: master
