@@ -1,4 +1,4 @@
-FROM python:3.5.3-alpine
+FROM python:3.5.3
 
 MAINTAINER Håkon Ødegård Løvdal
 
