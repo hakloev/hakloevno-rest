@@ -10,7 +10,7 @@ echo Starting uWSGI
 
 exec uwsgi --chdir=/srv/app \
     --module=hakloevno.wsgi:application \
-    --env DJANGO_SETTINGS_MODULE=hakloevno.settings \
+    --env DJANGO_SETTINGS_MODULE=hakloevno.settings.production \
     --master --pidfile=/tmp/project-master.pid \
     --socket=0.0.0.0:8080 \
     --http=0.0.0.0:8081 \
