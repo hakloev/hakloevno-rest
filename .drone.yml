@@ -6,3 +6,16 @@ pipeline:
         tags: [ latest ]
         when:
             branch: master
+
+    ssh:
+        image: plugins/ssh
+        when:
+            event: push
+            branch: master
+        host: hakloev.no
+        user: hakloev
+        port: 723
+        script:
+            - docker pull registry.hakloev.no/hakloevno/backend:latest
+            - docker-compose -f /srv/docker/hakloevno/docker-compose.yml stop backend
+            - docker-compose -f /srv/docker/hakloevno/docker-compose.yml up -d backend
