@@ -17,5 +17,14 @@ pipeline:
         port: 723
         script:
             - docker pull registry.hakloev.no/hakloevno/backend:latest
-            - docker-compose -f /srv/docker/hakloevno/docker-compose.yml stop backend
+            - docker-compose -f /srv/docker/hakloevno/docker-compose.yml down backend
             - docker-compose -f /srv/docker/hakloevno/docker-compose.yml up -d backend
+
+    notify:
+        image: drillster/drone-email
+        host: mail.ntnu.fap.no
+        port: 25
+        from: drone@drone.fap.no
+        recipients: [ post@hakloev.no ]
+        when:
+            status: [ success, changed, failure ]
