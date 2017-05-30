@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from apps.blog.views import ArticleViewSet
+from apps.pages.views import weather_api
 
 router = routers.DefaultRouter()
 router.register(r'articles', ArticleViewSet)
@@ -24,5 +25,6 @@ router.register(r'articles', ArticleViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+    url(r'^api/weather/location/$', weather_api),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
