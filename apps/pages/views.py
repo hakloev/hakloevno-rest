@@ -3,12 +3,14 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_safe
 
 import requests
+import requests_cache
 import xml.etree.ElementTree as ET
 
 # Create your views here.
-
 BASE_YR_API_URL = 'http://api.yr.no/weatherapi/'
 LOCATION_FORECAST_ENDPOINT = 'locationforecast/1.9/'  # ?lat=60.10;lon=9.58
+
+requests_cache.install_cache('yr_api_cache', expire_after=1800)  # Cache for 30 minutes
 
 
 @require_safe

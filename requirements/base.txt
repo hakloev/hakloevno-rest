@@ -2,3 +2,4 @@ Django==1.10.5
 django-filter==1.0.1
 djangorestframework==3.5.4
 requests==2.14.2
+requests-cache==0.4.13
