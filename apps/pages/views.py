@@ -30,7 +30,7 @@ def weather_api(request):
             "originUrl": r.url,
             "status": r.status_code,
             "error": r.reason,
-        })
+        }, status=r.status_code)
 
     tree = ET.ElementTree(ET.fromstring(r.text))
     forecasts = defaultdict(dict)
@@ -62,14 +62,7 @@ def weather_api(request):
 
         forecasts[identifier].update(temp_forecast)
 
-    sorted_timestamps = sorted(forecasts)
-
     return JsonResponse({
         "originUrl": r.url,
-        "forecasts": forecasts,
-        "timestamps": {
-            "sorted": sorted_timestamps,
-            "first": sorted_timestamps[0],
-            "last": sorted_timestamps[-1],
-        }
+        "forecasts": list(forecasts.values()),
     })
