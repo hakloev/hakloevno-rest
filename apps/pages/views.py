@@ -67,14 +67,10 @@ def weather_text(request):
 
         text_forecasts.append(temp_forecast)
 
-    # Return as HttpResponse to avoid UTF-8 characters being escaped
-    return HttpResponse(
-        json.dumps({
-            'originUrl': r.url,
-            'forecasts': text_forecasts
-        }, ensure_ascii=False),
-        content_type="application/json; encoding=utf-8"
-    )
+    return JsonResponse({
+        'originUrl': r.url,
+        'forecasts': text_forecasts,
+    })
 
 
 @require_safe
